@@ -1,7 +1,7 @@
 # portfolio
 software engineering career portfolio
 
-in terminal
-  cd portfolio
-  npm install
-  npm start
+in terminal:
+  1. cd portfolio
+  2. npm install
+  3. npm start
