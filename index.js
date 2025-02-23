@@ -1,70 +1,39 @@
 import React from 'react';
-import '../App.css';
-import headshot2 from '../images/headshot2.jpeg';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
 
-const Home = () => {
-return (
-	<div id="Home">
-<div class="flex-grid">
-			<div class="col1">
-				<img src={headshot2}class="headshot2"></img>
-			</div>
-			<div class="col2">
-				<article class= "intro">
-					<h1>Hello World!</h1>
-					<p>I recently completed the IBM Full Stack Software Developer Certification Program on Coursera. Below there is a list of the skills I learned as well as my full resume. Please ejoy, explore, and something my career portfolio.
-					</p>
-				</article>
-
-				<details name="exclusive" open>
-					<summary>Languages</summary>
-					<article class="about_list_items">
-						<p>HTML</p>
-						<p>CSS</p>
-						<p>JavaScript</p>
-						<p>Python</p>
-					</article>
-				</details>
-
-				<details name="exclusive" open>
-					<summary>Frameworks</summary>
-					<article class="about_list_items">
-						<p>React</p>
-						<p>Express</p>
-						<p>Node.js</p>
-						<p>Flask</p>
-						<p>Jupyter</p>
-					</article>
-				</details>
-
-				<details name="exclusive">
-					<summary >Courses</summary>
-					<article class="about_list_items">
-						<p>Introduction to Software Engineering</p>
-						<p>Cloud Achitecture</p>
-						<p>Introduction to HTML, CSS, & JavaScript</p>
-						<p>Getting Started with Git & Github</p>
-						<p>Developing Front-End Applications with React</p>
-						<p>Developing Back-End Apps with Node.js & Express</p>
-						<p>Python for Data Science, AI, & Development</p>
-						<p>Developing AI Applications with Python and Flask</p>
-					</article>
-				</details>
-
-				<details name="exclusive">
-					<summary>Resume</summary>
-					<article class="about_list_items">
-					<p>content</p>
-					</article>
-				</details>
-				
-			</div>
-		</div>
-
-
-</div>
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
-};
 
-export default Home;
+function addRecommendation() {
+  // Get the message of the new recommendation
+  let recommendation = document.getElementById("new_recommendation");
+  // If the user has left a recommendation, display a pop-up
+  if (recommendation.value != null && recommendation.value.trim() != "") {
+    console.log("New recommendation added");
+    //Call showPopup here
+    showPopup(true);
+    // Create a new 'recommendation' element and set it's value to the user's message
+    var element = document.createElement("div");
+    element.setAttribute("class","recommendation");
+    element.innerHTML = "\<span\>&#8220;\</span\>" + recommendation.value + "\<span\>&#8221;\</span\>";
+    // Add this element to the end of the list of recommendations
+    document.getElementById("all_recommendations").appendChild(element); 
+    
+    // Reset the value of the textarea
+    recommendation.value = "";
+  }
+}
+
+function showPopup(bool) {
+  if (bool) {
+    document.getElementById('popup').style.visibility = 'visible'
+  } else {
+    document.getElementById('popup').style.visibility = 'hidden'
+  }
+}
